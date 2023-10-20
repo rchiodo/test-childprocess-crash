@@ -20,9 +20,12 @@ export function activate(context: vscode.ExtensionContext) {
 	let disposable = vscode.commands.registerCommand('test-childprocess-crash.helloWorld', () => {
 		// Start the subprocess using node and the js file that should then create a python process and try to kill it
 		const filePath = path.join(__dirname, 'child_launcher.js');
-		const child = exec(`node ${filePath}`);
+		const child = exec(`node ${filePath} ${__dirname}`);
 		child.on('error', (e) => console.error(e));
 		child.stdout?.on('data', (c) => {
+			console.log(c);
+		});
+		child.stderr?.on('data', (c) => {
 			console.log(c);
 		});
 		child.on('exit', (c) => {
