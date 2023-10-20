@@ -10,9 +10,6 @@ setTimeout(() => {
     // Kill it after a second
     child.kill();
     console.log(`Killed python process`);
-
-    // Act like we canceled it.
-    throw Error('Canceled');
 }, 100);
 child.on('error', (e) => console.error(e));
 child.stdout?.on('data', (d) => console.log(d));
