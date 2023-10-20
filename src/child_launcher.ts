@@ -13,7 +13,7 @@ setTimeout(() => {
 
     // Act like we canceled it.
     throw Error('Canceled');
-}, 1000);
+}, 100);
 child.on('error', (e) => console.error(e));
 child.stdout?.on('data', (d) => console.log(d));
 child.stderr?.on('data', (d) => console.error(d));
